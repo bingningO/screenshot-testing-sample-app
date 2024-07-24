@@ -19,10 +19,12 @@ package com.example.reply.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.Surface
-import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.reply.ui.navigation.AppNavHost
+import com.example.reply.ui.navigation.BottomNavigationBar
 import com.example.reply.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,8 +37,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             AppTheme {
-                Surface(tonalElevation = 5.dp) {
-                    AppNavHost(navController = navController)
+                Scaffold(
+                    bottomBar = {
+                        BottomNavigationBar(navController = navController)
+                    }
+                ) { paddingValues ->
+                    AppNavHost(
+                        modifier = Modifier.padding(paddingValues),
+                        navController = navController
+                    )
                 }
             }
         }
