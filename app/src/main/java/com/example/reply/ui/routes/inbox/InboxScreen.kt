@@ -16,6 +16,9 @@
 
 package com.example.reply.ui.routes.inbox
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,31 +32,42 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.reply.R
-import com.example.reply.ui.ReplyHomeUIState
+import com.example.reply.ui.navigation.Route
+import com.example.reply.ui.theme.AppTheme
 
 
 @Composable
 fun InboxScreen(
-    replyHomeUIState: ReplyHomeUIState,
-    closeDetailScreen: () -> Unit,
-    navigateToDetail: (Long) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    viewModel: InboxViewModel = hiltViewModel()
 ) {
-
+    val state by viewModel.uiState.collectAsState()
     val emailLazyListState = rememberLazyListState()
 
     Box(modifier = modifier.fillMaxSize()) {
         InboxContent(
-            replyHomeUIState = replyHomeUIState,
+            inboxUIState = state,
             emailLazyListState = emailLazyListState,
             modifier = Modifier.fillMaxSize(),
-            closeDetailScreen = closeDetailScreen,
-            navigateToDetail = navigateToDetail
+            closeDetailScreen = {
+                // todo
+                Log.d("InboxScreen", "closeDetailScreen todo")
+            },
+            navigateToDetail = { emailId ->
+                navController.navigate(Route.Detail.name)
+            }
         )
 
         LargeFloatingActionButton(
@@ -76,25 +90,40 @@ fun InboxScreen(
 
 @Composable
 fun InboxContent(
-    replyHomeUIState: ReplyHomeUIState,
+    inboxUIState: InboxUIState,
     emailLazyListState: LazyListState,
     modifier: Modifier = Modifier,
     closeDetailScreen: () -> Unit,
     navigateToDetail: (Long) -> Unit
 ) {
-    if (replyHomeUIState.selectedEmail != null && replyHomeUIState.isDetailOnlyOpen) {
+    if (inboxUIState.selectedEmail != null && inboxUIState.isDetailOnlyOpen) {
         BackHandler {
             closeDetailScreen()
         }
-        ReplyEmailDetail(email = replyHomeUIState.selectedEmail) {
+        ReplyEmailDetail(email = inboxUIState.selectedEmail) {
             closeDetailScreen()
         }
     } else {
         ReplyEmailList(
-            emails = replyHomeUIState.emails,
+            emails = inboxUIState.emails,
             emailLazyListState = emailLazyListState,
             modifier = modifier,
             navigateToDetail = navigateToDetail
         )
+    }
+}
+
+@Preview(
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Preview(
+    uiMode = UI_MODE_NIGHT_NO,
+    name = "DefaultPreviewLight"
+)
+@Composable
+fun InboxScreenPreviewLight() {
+    AppTheme {
+        InboxScreen(navController = rememberNavController())
     }
 }

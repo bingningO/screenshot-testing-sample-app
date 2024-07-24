@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package com.example.reply.ui
+package com.example.reply.ui.routes.inbox
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.reply.data.Email
 import com.example.reply.data.LocalEmailsDataProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ReplyHomeViewModel : ViewModel() {
+@HiltViewModel
+class InboxViewModel @Inject constructor() : ViewModel() {
 
     // UI state exposed to the UI
-    private val _uiState = MutableStateFlow(ReplyHomeUIState(loading = true))
-    val uiState: StateFlow<ReplyHomeUIState> = _uiState
+    private val _uiState = MutableStateFlow(InboxUIState(loading = true))
+    val uiState: StateFlow<InboxUIState> = _uiState
 
     init {
         initEmailList()
@@ -37,7 +37,7 @@ class ReplyHomeViewModel : ViewModel() {
 
     private fun initEmailList() {
         val emails = LocalEmailsDataProvider.allEmails
-        _uiState.value = ReplyHomeUIState(
+        _uiState.value = InboxUIState(
             emails = emails,
             selectedEmail = emails.first()
         )
@@ -63,7 +63,7 @@ class ReplyHomeViewModel : ViewModel() {
     }
 }
 
-data class ReplyHomeUIState(
+data class InboxUIState(
     val emails: List<Email> = emptyList(),
     val selectedEmail: Email? = null,
     val isDetailOnlyOpen: Boolean = false,
