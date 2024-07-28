@@ -39,36 +39,12 @@ class InboxViewModel @Inject constructor(
 
     private fun initEmailList() {
         val emails = emailsDataProvider.allEmails
-        _uiState.value = InboxUIState(
-            emails = emails,
-            selectedEmail = emails.first()
-        )
-    }
-
-    fun setSelectedEmail(emailId: Long) {
-        /**
-         * We only set isDetailOnlyOpen to true when it's only single pane layout
-         */
-        val email = uiState.value.emails.find { it.id == emailId }
-        _uiState.value = _uiState.value.copy(
-            selectedEmail = email,
-            isDetailOnlyOpen = true
-        )
-    }
-
-    fun closeDetailScreen() {
-        _uiState.value = _uiState
-            .value.copy(
-                isDetailOnlyOpen = false,
-                selectedEmail = _uiState.value.emails.first()
-            )
+        _uiState.value = InboxUIState(emails = emails, loading = false)
     }
 }
 
 data class InboxUIState(
     val emails: List<Email> = emptyList(),
-    val selectedEmail: Email? = null,
-    val isDetailOnlyOpen: Boolean = false,
     val loading: Boolean = false,
     val error: String? = null
 )

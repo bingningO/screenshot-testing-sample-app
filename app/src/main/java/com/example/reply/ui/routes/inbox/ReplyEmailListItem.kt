@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.reply.ui.components
+package com.example.reply.ui.routes.inbox
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,10 +24,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -36,24 +36,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.selected
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.reply.R
 import com.example.reply.data.Email
+import com.example.reply.data.dummySingleEmail
+import com.example.reply.ui.common.ProfileImage
+import com.example.reply.ui.theme.AppTheme
 
 @Composable
 fun ReplyEmailListItem(
-    email: Email,
-    isSelected: Boolean = false,
     modifier: Modifier = Modifier,
+    email: Email,
     navigateToDetail: (Long) -> Unit
 ) {
     Card(
         modifier = modifier
             .padding(horizontal = 16.dp, vertical = 4.dp)
-            .semantics { selected = isSelected }
             .clickable { navigateToDetail(email.id) },
         colors = CardDefaults.cardColors(
             containerColor = if (email.isImportant) {
@@ -69,7 +69,7 @@ fun ReplyEmailListItem(
                 .padding(20.dp)
         ) {
             Row(modifier = Modifier.fillMaxWidth()) {
-                ReplyProfileImage(
+                ProfileImage(
                     drawableResource = email.sender.avatar,
                     description = email.sender.fullName,
                 )
@@ -95,7 +95,10 @@ fun ReplyEmailListItem(
 
                 ) {
                     Icon(
-                        imageVector = Icons.Default.StarBorder,
+                        imageVector = if (email.isStarred)
+                            Icons.Default.Star
+                        else
+                            Icons.Default.StarBorder,
                         contentDescription = stringResource(id = R.string.description_favorite),
                     )
                 }
@@ -113,5 +116,42 @@ fun ReplyEmailListItem(
                 style = MaterialTheme.typography.bodyLarge,
             )
         }
+    }
+}
+
+@Preview
+@Composable
+fun ReplyEmailListItemPreview() {
+    AppTheme {
+        ReplyEmailListItem(
+            email = dummySingleEmail,
+            navigateToDetail = { }
+        )
+    }
+}
+
+@Preview
+@Composable
+fun ReplyEmailListItemPreviewStarred() {
+    AppTheme {
+        ReplyEmailListItem(
+            email = dummySingleEmail.copy(
+                isStarred = true
+            ),
+            navigateToDetail = { }
+        )
+    }
+}
+
+@Preview
+@Composable
+fun ReplyEmailListItemPreviewImportant() {
+    AppTheme {
+        ReplyEmailListItem(
+            email = dummySingleEmail.copy(
+                isImportant = true
+            ),
+            navigateToDetail = { }
+        )
     }
 }

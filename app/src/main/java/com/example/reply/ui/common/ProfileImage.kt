@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.reply.ui.components
+package com.example.reply.ui.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
@@ -23,10 +23,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.reply.ui.theme.AppTheme
 
 @Composable
-fun ReplyProfileImage(
+fun ProfileImage(
     drawableResource: Int,
     description: String,
     modifier: Modifier = Modifier
@@ -38,4 +40,15 @@ fun ReplyProfileImage(
         painter = painterResource(id = drawableResource),
         contentDescription = description,
     )
+}
+
+@Preview
+@Composable
+fun ProfileImagePreview() {
+    AppTheme {
+        ProfileImage(
+            drawableResource = com.example.reply.R.drawable.avatar_2,
+            description = "Profile image",
+        )
+    }
 }

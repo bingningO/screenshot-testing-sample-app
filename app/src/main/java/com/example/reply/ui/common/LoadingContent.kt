@@ -1,4 +1,4 @@
-package com.example.reply.ui.components
+package com.example.reply.ui.common
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

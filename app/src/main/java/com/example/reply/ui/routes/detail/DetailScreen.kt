@@ -12,9 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.reply.data.Email
-import com.example.reply.ui.components.EmailDetailAppBar
-import com.example.reply.ui.components.LoadingContent
-import com.example.reply.ui.components.ReplyEmailThreadItem
+import com.example.reply.ui.common.LoadingContent
 
 @Composable
 fun DetailScreen(

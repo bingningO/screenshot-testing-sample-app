@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.reply.ui.components
+package com.example.reply.ui.routes.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,7 +27,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -36,9 +35,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.reply.R
 import com.example.reply.data.Email
+import com.example.reply.data.dummySingleEmail
+import com.example.reply.ui.common.ProfileImage
+import com.example.reply.ui.theme.AppTheme
 
 @Composable
 fun ReplyEmailThreadItem(
@@ -53,7 +56,7 @@ fun ReplyEmailThreadItem(
             .background(MaterialTheme.colorScheme.background)
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            ReplyProfileImage(
+            ProfileImage(
                 drawableResource = email.sender.avatar,
                 description = email.sender.fullName,
             )
@@ -114,5 +117,39 @@ fun ReplyEmailThreadItem(
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun ReplyEmailThreadItemPreview() {
+    AppTheme {
+        ReplyEmailThreadItem(
+            email = dummySingleEmail
+        )
+    }
+}
+
+@Preview
+@Composable
+fun ReplyEmailThreadItemPreviewStarred() {
+    AppTheme {
+        ReplyEmailThreadItem(
+            email = dummySingleEmail.copy(isStarred = true)
+        )
+    }
+}
+
+@Preview
+@Composable
+fun ReplyEmailThreadItemPreviewLongText() {
+    AppTheme {
+        ReplyEmailThreadItem(
+            email = dummySingleEmail.copy(
+                body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                    "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            )
+        )
     }
 }
