@@ -45,7 +45,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val isDarkMode = themePreference.isDarkMode.collectAsState(initial = false).value
-            Log.d("MainActivity", "isDarkMode: $isDarkMode")
 
             val navController = rememberNavController()
             AppTheme(
