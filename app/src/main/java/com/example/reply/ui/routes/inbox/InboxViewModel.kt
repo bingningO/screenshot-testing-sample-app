@@ -25,7 +25,9 @@ import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class InboxViewModel @Inject constructor() : ViewModel() {
+class InboxViewModel @Inject constructor(
+    private val emailsDataProvider: LocalEmailsDataProvider
+) : ViewModel() {
 
     // UI state exposed to the UI
     private val _uiState = MutableStateFlow(InboxUIState(loading = true))
@@ -36,7 +38,7 @@ class InboxViewModel @Inject constructor() : ViewModel() {
     }
 
     private fun initEmailList() {
-        val emails = LocalEmailsDataProvider.allEmails
+        val emails = emailsDataProvider.allEmails
         _uiState.value = InboxUIState(
             emails = emails,
             selectedEmail = emails.first()

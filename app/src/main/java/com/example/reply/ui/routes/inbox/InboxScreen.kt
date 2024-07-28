@@ -44,6 +44,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.reply.R
 import com.example.reply.ui.navigation.Route
+import com.example.reply.ui.routes.detail.ReplyEmailDetail
 import com.example.reply.ui.theme.AppTheme
 
 
@@ -66,7 +67,7 @@ fun InboxScreen(
                 Log.d("InboxScreen", "closeDetailScreen todo")
             },
             navigateToDetail = { emailId ->
-                navController.navigate(Route.Detail.name)
+                navController.navigate(Route.Detail.name + "/$emailId")
             }
         )
 

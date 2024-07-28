@@ -21,8 +21,57 @@ import com.example.reply.R
 /**
  * A static data store of [Email]s.
  */
+class LocalEmailsDataProvider {
 
-object LocalEmailsDataProvider {
+    /**
+     * Get an [Email] with the given [id].
+     */
+    fun get(id: Long): Email? {
+        return allEmails.firstOrNull { it.id == id }
+    }
+
+    /**
+     * Create a new, blank [Email].
+     */
+    fun create(): Email {
+        return Email(
+            System.nanoTime(), // Unique ID generation.
+            LocalAccountsDataProvider.getDefaultUserAccount(),
+            createdAt = "Just now",
+            subject = "Monthly hosting party",
+            body = "I would like to invite everyone to our monthly event hosting party"
+        )
+    }
+
+    /**
+     * Create a new [Email] that is a reply to the email with the given [replyToId].
+     */
+    fun createReplyTo(replyToId: Long): Email {
+        val replyTo = get(replyToId) ?: return create()
+        return Email(
+            id = System.nanoTime(),
+            sender = replyTo.recipients.firstOrNull()
+                ?: LocalAccountsDataProvider.getDefaultUserAccount(),
+            recipients = listOf(replyTo.sender) + replyTo.recipients,
+            subject = replyTo.subject,
+            isStarred = replyTo.isStarred,
+            isImportant = replyTo.isImportant,
+            createdAt = "Just now",
+            body = "Responding to the above conversation."
+        )
+    }
+
+    /**
+     * Get a list of [EmailFolder]s by which [Email]s can be categorized.
+     */
+    fun getAllFolders() = listOf(
+        "Receipts",
+        "Pine Elementary",
+        "Taxes",
+        "Vacation",
+        "Mortgage",
+        "Grocery coupons"
+    )
 
     private val threads = listOf(
         Email(
@@ -284,55 +333,5 @@ object LocalEmailsDataProvider {
             mailbox = MailboxType.SPAM,
             threads = threads.shuffled(),
         )
-    )
-
-    /**
-     * Get an [Email] with the given [id].
-     */
-    fun get(id: Long): Email? {
-        return allEmails.firstOrNull { it.id == id }
-    }
-
-    /**
-     * Create a new, blank [Email].
-     */
-    fun create(): Email {
-        return Email(
-            System.nanoTime(), // Unique ID generation.
-            LocalAccountsDataProvider.getDefaultUserAccount(),
-            createdAt = "Just now",
-            subject = "Monthly hosting party",
-            body = "I would like to invite everyone to our monthly event hosting party"
-        )
-    }
-
-    /**
-     * Create a new [Email] that is a reply to the email with the given [replyToId].
-     */
-    fun createReplyTo(replyToId: Long): Email {
-        val replyTo = get(replyToId) ?: return create()
-        return Email(
-            id = System.nanoTime(),
-            sender = replyTo.recipients.firstOrNull()
-                ?: LocalAccountsDataProvider.getDefaultUserAccount(),
-            recipients = listOf(replyTo.sender) + replyTo.recipients,
-            subject = replyTo.subject,
-            isStarred = replyTo.isStarred,
-            isImportant = replyTo.isImportant,
-            createdAt = "Just now",
-            body = "Responding to the above conversation."
-        )
-    }
-
-    /**
-     * Get a list of [EmailFolder]s by which [Email]s can be categorized.
-     */
-    fun getAllFolders() = listOf(
-        "Receipts",
-        "Pine Elementary",
-        "Taxes",
-        "Vacation",
-        "Mortgage",
-        "Grocery coupons"
     )
 }
