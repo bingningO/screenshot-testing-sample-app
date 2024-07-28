@@ -12,6 +12,7 @@ import androidx.navigation.navArgument
 import com.example.reply.ui.routes.EmptyComingSoon
 import com.example.reply.ui.routes.detail.DetailScreen
 import com.example.reply.ui.routes.inbox.InboxScreen
+import com.example.reply.ui.routes.setting.SettingScreen
 
 @Composable
 fun AppNavHost(modifier: Modifier, navController: NavHostController) {
@@ -32,7 +33,7 @@ fun AppNavHost(modifier: Modifier, navController: NavHostController) {
                 EmptyComingSoon()
             }
             composable(Route.Settings.name) {
-                EmptyComingSoon()
+                SettingScreen()
             }
         }
     }
