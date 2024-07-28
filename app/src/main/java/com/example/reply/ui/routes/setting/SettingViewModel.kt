@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.reply.data.DarkLightMode
 import com.example.reply.data.ThemePreference
+import com.example.reply.data.TypographyMode
 import com.example.reply.module.IoDispatcher
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -31,12 +32,18 @@ class SettingViewModel @Inject constructor(
 
     private suspend fun initTheme() {
         setDarkOrLightMode()
+        setTypographyMode()
     }
 
     private suspend fun setDarkOrLightMode() {
         val isDark = themePreference.isDarkMode.first()
         _uiState.value =
             SettingUIState(darkLightMode = if (isDark) DarkLightMode.DARK else DarkLightMode.LIGHT)
+    }
+
+    private suspend fun setTypographyMode() {
+        val typographyValue = themePreference.typographyMode.first()
+        _uiState.value = SettingUIState(typographyMode = TypographyMode.entries[typographyValue])
     }
 
     // UI Input
@@ -47,8 +54,16 @@ class SettingViewModel @Inject constructor(
         }
     }
 
+    fun changeTypographyMode(mode: TypographyMode) {
+        viewModelScope.launch {
+            themePreference.setTypographyMode(mode.ordinal)
+            setTypographyMode()
+        }
+    }
+
     data class SettingUIState(
         val darkLightMode: DarkLightMode = DarkLightMode.DARK,
+        val typographyMode: TypographyMode = TypographyMode.DEFAULT,
         val loading: Boolean = false,
     )
 }

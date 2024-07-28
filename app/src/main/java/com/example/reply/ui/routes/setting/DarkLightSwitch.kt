@@ -22,7 +22,7 @@ fun DarkLightSwitch(
     onModeChanged: (DarkLightMode) -> Unit
 ) {
     Row(
-        modifier = modifier.fillMaxWidth().padding(16.dp),
+        modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(text = "Dark Mode", modifier = Modifier.weight(1f))

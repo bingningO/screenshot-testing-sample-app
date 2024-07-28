@@ -16,6 +16,8 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.example.reply.data.TypographyMode
+import com.example.ui.theme.typographyAreYouSerious
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -262,6 +264,7 @@ fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
+    typographyMode: TypographyMode = TypographyMode.DEFAULT,
     content: @Composable() () -> Unit
 ) {
     val colorScheme = when {
@@ -288,7 +291,11 @@ fun AppTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = typography,
+        typography = when(typographyMode) {
+            TypographyMode.DEFAULT -> typographyDefault
+            TypographyMode.ABEEZEE -> typographyABeeZee
+            TypographyMode.ARE_YOU_SERIOUS -> typographyAreYouSerious
+        },
         content = content
     )
 }

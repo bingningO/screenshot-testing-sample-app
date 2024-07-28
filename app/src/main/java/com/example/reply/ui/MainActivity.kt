@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.reply.data.ThemePreference
+import com.example.reply.data.TypographyMode
 import com.example.reply.ui.navigation.AppNavHost
 import com.example.reply.ui.navigation.BottomNavigationBar
 import com.example.reply.ui.theme.AppTheme
@@ -45,10 +46,12 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val isDarkMode = themePreference.isDarkMode.collectAsState(initial = false).value
+            val typographyMode = TypographyMode.entries[themePreference.typographyMode.collectAsState(initial = 0).value]
 
             val navController = rememberNavController()
             AppTheme(
-                darkTheme = isDarkMode
+                darkTheme = isDarkMode,
+                typographyMode = typographyMode
             ) {
                 Scaffold(
                     bottomBar = {
