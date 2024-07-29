@@ -26,7 +26,7 @@ class SettingViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             initTheme()
-            _uiState.value = SettingUIState(loading = false)
+            _uiState.value = _uiState.value.copy(loading = false)
         }
     }
 
@@ -37,13 +37,13 @@ class SettingViewModel @Inject constructor(
 
     private suspend fun setDarkOrLightMode() {
         val isDark = themePreference.isDarkMode.first()
-        _uiState.value =
-            SettingUIState(darkLightMode = if (isDark) DarkLightMode.DARK else DarkLightMode.LIGHT)
+        _uiState.value = _uiState.value.copy(darkLightMode = if (isDark) DarkLightMode.DARK else DarkLightMode.LIGHT)
+
     }
 
     private suspend fun setTypographyMode() {
         val typographyValue = themePreference.typographyMode.first()
-        _uiState.value = SettingUIState(typographyMode = TypographyMode.entries[typographyValue])
+        _uiState.value = _uiState.value.copy(typographyMode = TypographyMode.entries[typographyValue])
     }
 
     // UI Input
@@ -62,8 +62,8 @@ class SettingViewModel @Inject constructor(
     }
 
     data class SettingUIState(
-        val darkLightMode: DarkLightMode = DarkLightMode.DARK,
-        val typographyMode: TypographyMode = TypographyMode.DEFAULT,
+        val darkLightMode: DarkLightMode? = null,
+        val typographyMode: TypographyMode? = null,
         val loading: Boolean = false,
     )
 }

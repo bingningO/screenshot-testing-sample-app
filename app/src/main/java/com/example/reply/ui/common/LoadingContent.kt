@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.example.reply.ui.theme.AppTheme
 
 @Composable
-fun LoadingContent(modifier: Modifier) {
+fun LoadingContent(modifier: Modifier = Modifier) {
     Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         CircularProgressIndicator(
             modifier = Modifier.size(64.dp),

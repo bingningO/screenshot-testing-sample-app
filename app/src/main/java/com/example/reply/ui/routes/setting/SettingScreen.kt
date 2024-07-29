@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.reply.data.DarkLightMode
+import com.example.reply.ui.common.LoadingContent
 import com.example.reply.ui.theme.AppTheme
 
 @Composable
@@ -30,18 +31,22 @@ fun SettingScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
-    Column(modifier = modifier.padding(16.dp)) {
-        Title("Theme")
-        DarkLightSwitch(currentMode = state.darkLightMode) { mode ->
-            Toast.makeText(context, "Theme changed: $mode", Toast.LENGTH_SHORT).show()
-            viewModel.toggleTheme(mode)
+    if(state.darkLightMode != null && state.typographyMode != null) {
+        Column(modifier = modifier.padding(16.dp)) {
+            Title("Theme")
+            DarkLightSwitch(currentMode = state.darkLightMode!!) { mode ->
+                Toast.makeText(context, "Theme changed: $mode", Toast.LENGTH_SHORT).show()
+                viewModel.toggleTheme(mode)
+            }
+            HorizontalDivider()
+            Title("Typography")
+            TypographySwitch(currentMode = state.typographyMode!!) { mode ->
+                Toast.makeText(context, "Typography changed: $mode", Toast.LENGTH_SHORT).show()
+                viewModel.changeTypographyMode(mode)
+            }
         }
-        HorizontalDivider()
-        Title("Typography")
-        TypographySwitch(currentMode = state.typographyMode) { mode ->
-            Toast.makeText(context, "Typography changed: $mode", Toast.LENGTH_SHORT).show()
-            viewModel.changeTypographyMode(mode)
-        }
+    } else {
+        LoadingContent()
     }
 }
 

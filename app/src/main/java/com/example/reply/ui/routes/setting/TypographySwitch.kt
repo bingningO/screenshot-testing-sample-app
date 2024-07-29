@@ -24,12 +24,13 @@ fun TypographySwitch(
     onModeChanged: (TypographyMode) -> Unit
 ) {
     val typographyOptions = listOf(TypographyMode.DEFAULT, TypographyMode.ABEEZEE, TypographyMode.ARE_YOU_SERIOUS)
-    Column(modifier = modifier
-        .selectableGroup()
-        .fillMaxWidth()) {
+    Column(
+        modifier = modifier
+            .selectableGroup()
+            .fillMaxWidth()
+    ) {
         typographyOptions.forEach { typographyMode ->
             TypographyItem(
-                modifier = Modifier.padding(8.dp),
                 selected = currentMode == typographyMode,
                 onClick = { onModeChanged(typographyMode) },
                 typographyMode = typographyMode
@@ -39,10 +40,17 @@ fun TypographySwitch(
 }
 
 @Composable
-private fun TypographyItem(modifier: Modifier, selected: Boolean, onClick: () -> Unit, typographyMode: TypographyMode) {
+private fun TypographyItem(
+    modifier: Modifier = Modifier,
+    selected: Boolean,
+    onClick: () -> Unit,
+    typographyMode: TypographyMode
+) {
     Row(
         modifier = modifier
-            .selectable(selected = selected, onClick = onClick),
+            .fillMaxWidth()
+            .selectable(selected = selected, onClick = onClick)
+            .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         RadioButton(selected = selected, onClick = null)
