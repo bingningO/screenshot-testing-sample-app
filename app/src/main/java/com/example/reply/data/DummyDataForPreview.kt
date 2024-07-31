@@ -1,7 +1,7 @@
 package com.example.reply.data
 
 import com.example.reply.R
-
+import com.example.reply.ui.routes.setting.SettingViewModel
 
 val dummySingleAccount = Account(
     id = 9L,
@@ -55,4 +55,10 @@ val dummyEmailList = listOf(
         createdAt = "3 hours ago",
         mailbox = MailboxType.DRAFTS
     )
+)
+
+val dummySettingUIState = SettingViewModel.SettingUIState(
+    loading = false,
+    darkLightMode = DarkLightMode.LIGHT,
+    typographyMode = TypographyMode.DEFAULT
 )

@@ -21,6 +21,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
     id 'app.cash.paparazzi'
+    id 'io.github.takahirom.roborazzi'
 }
 
 android {
@@ -138,6 +139,7 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.6.1'
     testImplementation "androidx.compose.ui:ui-test-junit4:1.6.8"
     testImplementation 'org.robolectric:robolectric:4.13'
+    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.25.0"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
