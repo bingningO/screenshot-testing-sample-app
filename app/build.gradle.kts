@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.builtins.StandardNames.FqNames.target
+
 /*
  * Copyright 2022 The Android Open Source Project
  *
@@ -20,7 +22,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
-    id("app.cash.paparazzi")
+//    id("app.cash.paparazzi")
     id("io.github.takahirom.roborazzi")
 }
 
@@ -50,7 +52,21 @@ android {
 
     testOptions {
         unitTests {
+            isReturnDefaultValues = true
             isIncludeAndroidResources = true
+
+            all {
+                it.jvmArgs("-noverify")
+                it.maxParallelForks = Runtime.getRuntime().availableProcessors()
+
+//                // -Pscreenshot to run only screenshot tests, e.g. ./gradlew recordRoborazziDebug -Pscreenshot
+//                it.useJUnit {
+//                    if (target.hasProperty("screenshot")) {
+//                        target.logger.lifecycle("Screenshot tests are included, ${it.name}, ${it.classpath}")
+//                        includeCategories("jp.unext.mediaplayer.data.ScreenshotTestCategory")
+//                    }
+//                }
+            }
         }
     }
 
@@ -99,9 +115,6 @@ dependencies {
     implementation(libs.runtimeLivedata)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
-    testImplementation(libs.uiTestJunit4)
-    androidTestImplementation(libs.uiTest)
-    androidTestImplementation(libs.androidxUiTestJunit4)
 
     implementation(libs.kotlinxCoroutinesCore)
     implementation(libs.kotlinxCoroutinesAndroid)
@@ -128,9 +141,11 @@ dependencies {
 
     // Testing
     androidTestImplementation(libs.rules)
-    testImplementation(libs.androidxComposeUiUiTestJunit4)
+    testImplementation(libs.junit)
     testImplementation(libs.robolectric)
-    testImplementation(libs.roborazzi)
+    testImplementation(libs.espresso.core)
+    testImplementation(libs.uiTestJunit4)
+    testImplementation(libs.testRoborazzi)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {

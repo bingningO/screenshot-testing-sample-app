@@ -25,7 +25,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}")
         classpath("org.jetbrains.kotlin:compose-compiler-gradle-plugin:${libs.versions.kotlin.get()}")
         classpath("com.google.dagger:hilt-android-gradle-plugin:${libs.versions.daggerHilt.get()}")
-        classpath("app.cash.paparazzi:paparazzi-gradle-plugin:${libs.versions.paparazzi.get()}")
+//        classpath("app.cash.paparazzi:paparazzi-gradle-plugin:${libs.versions.paparazzi.get()}")
     }
 }
 
