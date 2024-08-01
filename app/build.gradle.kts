@@ -22,6 +22,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
+    alias(libs.plugins.ksp)
 //    id("app.cash.paparazzi")
     id("io.github.takahirom.roborazzi")
 }
@@ -140,12 +141,15 @@ dependencies {
     implementation(libs.hiltNavigationCompose)
 
     // Testing
+    implementation(libs.showkase)
+    ksp(libs.showkaseKsp)
     androidTestImplementation(libs.rules)
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)
     testImplementation(libs.espresso.core)
     testImplementation(libs.uiTestJunit4)
     testImplementation(libs.testRoborazzi)
+    testImplementation(libs.testRoborazziCompose)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {

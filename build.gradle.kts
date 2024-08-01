@@ -32,6 +32,7 @@ buildscript {
 plugins {
 //    id("com.diffplug.spotless") version "6.25.0"
     kotlin("jvm")
+    alias(libs.plugins.ksp) apply false
     alias(libs.plugins.roborazzi) apply false
 }
 
