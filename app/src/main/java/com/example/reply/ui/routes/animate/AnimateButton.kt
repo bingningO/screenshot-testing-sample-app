@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 import com.example.reply.ui.theme.AppTheme
 
 @Composable
-fun AnimateButton(modifier: Modifier = Modifier) {
-    var isExtended by remember { mutableStateOf(true) }
+fun AnimateButton(modifier: Modifier = Modifier, isExtendSelected: Boolean = true) {
+    var isExtended by remember { mutableStateOf(isExtendSelected) }
 
     Box(modifier = modifier.fillMaxWidth()) {
         FloatingActionButton(
@@ -64,8 +64,16 @@ fun AnimateButton(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun AnimateButtonPreview() {
+fun AnimateButtonPreviewExtended() {
     AppTheme {
-        AnimateButton()
+        AnimateButton(isExtendSelected = true)
+    }
+}
+
+@Preview
+@Composable
+fun AnimateButtonPreviewNotExtended() {
+    AppTheme {
+        AnimateButton(isExtendSelected = false)
     }
 }
