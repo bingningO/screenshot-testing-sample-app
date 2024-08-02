@@ -18,13 +18,14 @@ import org.jetbrains.kotlin.builtins.StandardNames.FqNames.target
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    id("org.jetbrains.kotlin.plugin.compose")
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.composeCompiler)
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
     alias(libs.plugins.ksp)
 //    id("app.cash.paparazzi")
     id("io.github.takahirom.roborazzi")
+    alias(libs.plugins.screenshot)
 }
 
 android {
@@ -33,7 +34,7 @@ android {
     defaultConfig {
         applicationId = "com.example.reply"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -60,7 +61,7 @@ android {
                 it.jvmArgs("-noverify")
                 it.maxParallelForks = Runtime.getRuntime().availableProcessors()
 
-//                // -Pscreenshot to run only screenshot tests, e.g. ./gradlew recordRoborazziDebug -Pscreenshot
+//                // todo -Pscreenshot to run only screenshot tests, e.g. ./gradlew recordRoborazziDebug -Pscreenshot
 //                it.useJUnit {
 //                    if (target.hasProperty("screenshot")) {
 //                        target.logger.lifecycle("Screenshot tests are included, ${it.name}, ${it.classpath}")
@@ -85,6 +86,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     buildFeatures {
         compose = true
@@ -150,6 +153,11 @@ dependencies {
     testImplementation(libs.uiTestJunit4)
     testImplementation(libs.testRoborazzi)
     testImplementation(libs.testRoborazziCompose)
+    screenshotTestImplementation(libs.uiTooling)
+    screenshotTestImplementation(libs.uiToolingPreview)
+    screenshotTestImplementation(composeBom)
+    screenshotTestImplementation(libs.ui)
+    screenshotTestImplementation(libs.material3)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
@@ -166,7 +174,3 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
         jvmTarget = "1.8"
     }
 }
-//
-//tasks.withType<Test>().configureEach {
-//    systemProperty("robolectric.logging", "stdout")
-//}

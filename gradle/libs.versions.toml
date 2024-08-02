@@ -1,6 +1,7 @@
 [versions]
 activityKtx = "1.9.1"
 androidGradlePlugin = "8.5.1"
+gradleVersionsPlugin = "0.50.0"
 appcompatVersion = "1.7.0"
 coreKtx = "1.13.1"
 datastorePreferences = "1.1.1"
@@ -27,6 +28,7 @@ showkase = "1.0.3"
 rules = "1.6.1"
 junit = "4.13.2"
 espressoCore = "3.6.1"
+screenshot = "0.0.1-alpha03"
 
 [libraries]
 activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityKtx" }
@@ -73,3 +75,7 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 [plugins]
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazziVersion" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+screenshot = { id = "com.android.compose.screenshot", version.ref = "screenshot"}
+gradleVersions = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionsPlugin" }

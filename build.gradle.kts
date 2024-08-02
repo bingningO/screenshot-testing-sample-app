@@ -14,6 +14,14 @@
  * limitations under the License.
  */
 
+plugins {
+    alias(libs.plugins.kotlin) apply false
+    alias(libs.plugins.composeCompiler) apply false
+    alias(libs.plugins.gradleVersions)
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.roborazzi) apply false
+}
+
 buildscript {
     repositories {
         google()
@@ -29,38 +37,10 @@ buildscript {
     }
 }
 
-plugins {
-//    id("com.diffplug.spotless") version "6.25.0"
-    kotlin("jvm")
-    alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.roborazzi) apply false
-}
-
-subprojects {
+allprojects {
     repositories {
         google()
         mavenCentral()
     }
+}
 
-//    apply(plugin = "com.diffplug.spotless")
-
-//    spotless {
-//        kotlin {
-//            target("**/*.kt")
-//            targetExclude("$buildDir/**/*.kt")
-//            targetExclude("bin/**/*.kt")
-//
-//            ktlint("0.45.2")
-//            licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
-//        }
-//    }
-}
-dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-}
-repositories {
-    mavenCentral()
-}
-kotlin {
-    jvmToolchain(8)
-}
