@@ -11,6 +11,7 @@ import com.github.takahirom.roborazzi.captureRoboImage
 import com.github.takahirom.roborazzi.captureScreenRoboImage
 import org.junit.Rule
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
@@ -48,7 +49,7 @@ class ScreenshotTestForPreviews(
 //    }
 
     @Test
-//    @Category(ScreenshotTestCategory::class)
+    @Category(ScreenshotTestCategory::class)
     fun previewScreenshot() {
         val componentKey = showkaseBrowserComponent.componentKey
         val filePath = "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/$componentKey.png"

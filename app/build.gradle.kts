@@ -61,13 +61,12 @@ android {
                 it.jvmArgs("-noverify")
                 it.maxParallelForks = Runtime.getRuntime().availableProcessors()
 
-//                // todo -Pscreenshot to run only screenshot tests, e.g. ./gradlew recordRoborazziDebug -Pscreenshot
-//                it.useJUnit {
-//                    if (target.hasProperty("screenshot")) {
-//                        target.logger.lifecycle("Screenshot tests are included, ${it.name}, ${it.classpath}")
-//                        includeCategories("jp.unext.mediaplayer.data.ScreenshotTestCategory")
-//                    }
-//                }
+                it.useJUnit {
+                    if (project.hasProperty("screenshot")) {
+                        project.logger.lifecycle("Screenshot tests are included, ${it.name}, ${it.classpath}")
+                        includeCategories("com.example.reply.roborazzi.ScreenshotTestCategory")
+                    }
+                }
             }
         }
     }
