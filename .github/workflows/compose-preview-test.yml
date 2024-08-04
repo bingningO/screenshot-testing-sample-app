@@ -35,7 +35,7 @@ jobs:
           cache-cleanup: always
 
       - name: Run Compose Preview Screenshot Tests
-        run: ./gradlew updateDebugScreenshotTest
+        run: ./gradlew validateDebugScreenshotTest
 
       - uses: actions/upload-artifact@v4
         if: ${{ always() }}
