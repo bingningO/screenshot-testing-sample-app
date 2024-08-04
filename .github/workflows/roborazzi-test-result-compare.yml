@@ -14,8 +14,7 @@ permissions: { }
 
 jobs:
   compare-screenshot-test:
-    runs-on:
-      group: ubuntu-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 60
 
     permissions:
