@@ -1,4 +1,4 @@
-name: ScreenshotTestStore
+name: RoborazziTestStore
 
 on:
   push:
