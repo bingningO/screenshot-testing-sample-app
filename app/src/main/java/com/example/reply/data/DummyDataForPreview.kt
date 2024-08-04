@@ -10,7 +10,7 @@ val dummySingleAccount = Account(
     lastName = "Ggg",
     email = "email",
     altEmail = "alt email",
-    avatar = R.drawable.avatar_1,
+    avatar = R.drawable.avatar_4,
 )
 
 val dummySingleEmail = Email(
