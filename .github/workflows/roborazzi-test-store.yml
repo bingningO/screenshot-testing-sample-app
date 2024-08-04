@@ -11,7 +11,7 @@ permissions: { }
 jobs:
   store-screenshot-test:
     runs-on:
-      group: mad-ci-ubuntu-22.04
+      group: ubuntu-latest
     timeout-minutes: 60
 
     permissions:

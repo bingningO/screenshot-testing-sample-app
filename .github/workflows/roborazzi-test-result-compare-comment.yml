@@ -27,7 +27,7 @@ jobs:
       pull-requests: write # for creating a comment on pull requests
 
     runs-on:
-      group: mad-ci-ubuntu-22.04
+      group: ubuntu-latest
 
     steps:
       - uses: dawidd6/action-download-artifact@246dbf436b23d7c49e21a7ab8204ca9ecd1fe615 # v2.27.0
