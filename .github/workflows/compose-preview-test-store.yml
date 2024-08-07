@@ -41,5 +41,5 @@ jobs:
         with:
           name: compose preview screenshot test outputs
           path: |
-            **/build/reports/screenshotTest
+            **/app/src/debug/screenshotTest
           retention-days: 7
