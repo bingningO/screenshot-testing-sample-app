@@ -3,12 +3,15 @@ package com.example.reply.roborazzi
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.airbnb.android.showkase.models.Showkase
 import com.airbnb.android.showkase.models.ShowkaseBrowserComponent
+import com.airbnb.lottie.LottieTask
 import com.example.reply.module.getMetadata
 import com.github.takahirom.roborazzi.DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
 import com.github.takahirom.roborazzi.captureRoboImage
 import com.github.takahirom.roborazzi.captureScreenRoboImage
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.experimental.categories.Category
@@ -17,6 +20,8 @@ import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 /**
  * showkase gets all public/internal @Preview composable and roborazzi takes screenshots of them.
@@ -34,6 +39,16 @@ class ScreenshotTestForPreviews(
 ) {
     @get:Rule
     val composeTestRule = createComposeRule()
+
+    @Before
+    fun setup() {
+        LottieTask.EXECUTOR = Executor(Runnable::run)
+    }
+
+    @After
+    fun finished() {
+        LottieTask.EXECUTOR = Executors.newCachedThreadPool()
+    }
 
     // image loader
 //    @OptIn(ExperimentalCoilApi::class)

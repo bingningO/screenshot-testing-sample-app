@@ -134,6 +134,8 @@ dependencies {
     implementation(libs.lifecycleLivedataKtx)
     implementation(libs.lifecycleViewmodelCompose)
 
+    implementation(libs.lottie.compose)
+
     // Dagger Hilt
     implementation(libs.daggerHilt)
     implementation(libs.daggerHiltWork)
