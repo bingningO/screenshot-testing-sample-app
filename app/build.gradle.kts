@@ -64,7 +64,7 @@ android {
                 it.useJUnit {
                     if (project.hasProperty("screenshot")) {
                         project.logger.lifecycle("Screenshot tests are included, ${it.name}, ${it.classpath}")
-                        includeCategories("com.example.reply.roborazzi.ScreenshotTestCategory")
+                        includeCategories("com.example.reply.roborazzi.allPreviews.ScreenshotTestCategory")
                     }
                 }
             }
@@ -136,6 +136,8 @@ dependencies {
 
     implementation(libs.lottie.compose)
 
+    testImplementation(libs.kermit.android.debug)
+
     // Dagger Hilt
     implementation(libs.daggerHilt)
     implementation(libs.daggerHiltWork)
@@ -147,18 +149,26 @@ dependencies {
     // Testing
     implementation(libs.showkase)
     ksp(libs.showkaseKsp)
+    androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.rules)
+    androidTestImplementation(libs.runner)
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)
     testImplementation(libs.espresso.core)
+    androidTestImplementation(libs.espresso.core)
     testImplementation(libs.uiTestJunit4)
     testImplementation(libs.testRoborazzi)
     testImplementation(libs.testRoborazziCompose)
+    api(libs.testroborazziRule)
     screenshotTestImplementation(libs.uiTooling)
     screenshotTestImplementation(libs.uiToolingPreview)
     screenshotTestImplementation(composeBom)
     screenshotTestImplementation(libs.ui)
     screenshotTestImplementation(libs.material3)
+    testImplementation(libs.hilt.android.testing)
+    kaptTest(libs.daggerHiltCompiler)
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.daggerHiltCompiler)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {

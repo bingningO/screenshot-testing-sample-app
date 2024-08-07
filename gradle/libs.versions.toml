@@ -5,7 +5,10 @@ gradleVersionsPlugin = "0.50.0"
 appcompatVersion = "1.7.0"
 coreKtx = "1.13.1"
 datastorePreferences = "1.1.1"
+hiltAndroidTesting = "2.51.1"
 hiltNavigationCompose = "1.2.0"
+junitVersion = "1.2.1"
+kermitAndroidDebug = "1.2.2"
 kotlin = "2.0.0"
 ksp = "2.0.0-1.0.23"
 appCompat = "1.7.0"
@@ -25,6 +28,7 @@ navigationCompose = "2.7.7"
 paparazzi = "1.3.4"
 robolectric = "4.13"
 roborazziVersion = "1.25.0"
+runner = "1.6.1"
 showkase = "1.0.3"
 rules = "1.6.1"
 junit = "4.13.2"
@@ -40,13 +44,17 @@ coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 daggerHiltCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHilt" }
 daggerHilt = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
 datastorePreferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+ext-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
 foundation = { module = "androidx.compose.foundation:foundation" }
 foundationLayout = { module = "androidx.compose.foundation:foundation-layout" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTesting" }
 hiltCompiler = { module = "androidx.hilt:hilt-compiler", version.ref = "daggerHiltForAndroidX" }
 daggerHiltWork = { module = "androidx.hilt:hilt-work", version.ref = "daggerHiltForAndroidX" }
 hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 composeBom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 composeGoogleFonts = {module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "composeGoogleFonts" }
+kermit-android-debug = { module = "co.touchlab:kermit-android-debug", version.ref = "kermitAndroidDebug" }
 kotlinxCoroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 kotlinxCoroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 lifecycleLivedataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
@@ -58,6 +66,7 @@ material3 = { module = "androidx.compose.material3:material3" }
 materialIconsExtended = { module = "androidx.compose.material:material-icons-extended" }
 navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+runner = { module = "androidx.test:runner", version.ref = "runner" }
 testRoborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazziVersion" }
 testRoborazziCompose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazziVersion" }
 testroborazziRule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazziVersion" }
@@ -72,7 +81,6 @@ uiTooling = { module = "androidx.compose.ui:ui-tooling" }
 uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 uiTestJunit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 
 [plugins]
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazziVersion" }

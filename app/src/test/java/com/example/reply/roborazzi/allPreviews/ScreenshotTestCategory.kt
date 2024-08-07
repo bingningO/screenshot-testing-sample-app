@@ -1,4 +1,4 @@
-package com.example.reply.roborazzi
+package com.example.reply.roborazzi.allPreviews
 
 /**
  * This is a marker interface for categorizing screenshot tests.

@@ -139,7 +139,7 @@ private fun HomeTab(
     ) {
         Icon(
             imageVector = icon,
-            contentDescription = null
+            contentDescription = null,
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(text = title)

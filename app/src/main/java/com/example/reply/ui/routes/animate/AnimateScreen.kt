@@ -22,7 +22,6 @@ fun AnimateScreen(modifier: Modifier = Modifier) {
         HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
         AnimateTab()
         HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
-        Text(text = "Lottie Animation", style = MaterialTheme.typography.bodyMedium)
         AnimateLottie(modifier = Modifier.align(Alignment.CenterHorizontally))
         HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
     }

@@ -1,4 +1,4 @@
-package com.example.reply.roborazzi
+package com.example.reply.roborazzi.allPreviews
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.airbnb.android.showkase.models.Showkase
