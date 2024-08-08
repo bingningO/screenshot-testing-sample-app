@@ -2,17 +2,19 @@ package com.example.reply.roborazzi
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.airbnb.lottie.LottieTask
+import com.example.reply.roborazzi.TestUtil.checkScreenCapture
+import com.example.reply.roborazzi.TestUtil.waitUntilIdle
 import com.example.reply.roborazzi.allPreviews.ScreenshotTestCategory
 import com.example.reply.ui.routes.animate.AnimateLottie
 import com.example.reply.ui.theme.AppTheme
 import com.github.takahirom.roborazzi.RoborazziRule
+import kotlinx.coroutines.test.StandardTestDispatcher
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -25,7 +27,10 @@ import java.util.concurrent.Executors
 
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
-class AnimateLottieTest {
+class AnimateLottieTestByGif {
+
+    private val testDispatcher = StandardTestDispatcher()
+
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
@@ -48,15 +53,17 @@ class AnimateLottieTest {
     }
 
     @Test
-    @Category(ScreenshotTestCategory::class)
+//    @Category(ScreenshotTestCategory::class)
     fun animateLottieTest() {
         composeTestRule.setContent {
             AppTheme {
                 AnimateLottie()
             }
         }
+        waitUntilIdle(testRule = composeTestRule, testDispatcher = testDispatcher)
+        checkScreenCapture(composeTestRule)
         composeTestRule.onNodeWithText("Play or Stop").performClick()
-        Thread.sleep(200)
-        composeTestRule.onNodeWithText("Play or Stop").performClick()
+        waitUntilIdle(testRule = composeTestRule, testDispatcher = testDispatcher)
+        checkScreenCapture(composeTestRule)
     }
 }

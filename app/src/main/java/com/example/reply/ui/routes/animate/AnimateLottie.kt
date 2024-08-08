@@ -21,20 +21,20 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.reply.R
 import com.example.reply.ui.theme.AppTheme
 
 @Composable
 fun AnimateLottie(
     modifier: Modifier = Modifier,
 ) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.Asset("lottie-sample.json"))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lottie_sample))
     var isPlaying by remember { mutableStateOf(true) }
-
     val progress by animateLottieCompositionAsState(
         composition = composition,
         isPlaying = isPlaying,
-        iterations = LottieConstants.IterateForever,
     )
+
     Column(modifier = modifier.fillMaxWidth()) {
         Text(text = "Lottie Animation", style = MaterialTheme.typography.bodyMedium)
         OutlinedButton(

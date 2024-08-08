@@ -8,10 +8,13 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.airbnb.lottie.LottieTask
+import com.example.reply.roborazzi.TestUtil.checkScreenCapture
+import com.example.reply.roborazzi.TestUtil.waitUntilIdle
 import com.example.reply.roborazzi.allPreviews.ScreenshotTestCategory
 import com.example.reply.ui.routes.animate.AnimateTab
 import com.example.reply.ui.theme.AppTheme
 import com.github.takahirom.roborazzi.RoborazziRule
+import kotlinx.coroutines.test.StandardTestDispatcher
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -24,7 +27,9 @@ import java.util.concurrent.Executors
 
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
-class AnimateTabTest {
+class AnimateTabTestByGif{
+    private val testDispatcher = StandardTestDispatcher()
+
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
@@ -47,14 +52,17 @@ class AnimateTabTest {
     }
 
     @Test
-    @Category(ScreenshotTestCategory::class)
+//    @Category(ScreenshotTestCategory::class)
     fun animateLottieTest() {
         composeTestRule.setContent {
             AppTheme {
                 AnimateTab()
             }
         }
+        waitUntilIdle(testRule = composeTestRule, testDispatcher = testDispatcher)
         composeTestRule.onNodeWithText("WORK").performClick()
+        waitUntilIdle(testRule = composeTestRule, testDispatcher = testDispatcher)
         composeTestRule.onNodeWithText("HOME").performClick()
+        waitUntilIdle(testRule = composeTestRule, testDispatcher = testDispatcher)
     }
 }
