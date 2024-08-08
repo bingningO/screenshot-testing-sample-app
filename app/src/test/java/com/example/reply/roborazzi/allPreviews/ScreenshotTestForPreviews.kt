@@ -1,5 +1,6 @@
 package com.example.reply.roborazzi.allPreviews
 
+import android.content.res.Configuration
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.airbnb.android.showkase.models.Showkase
 import com.airbnb.android.showkase.models.ShowkaseBrowserComponent
@@ -60,7 +61,7 @@ class ScreenshotTestForPreviews(
         val componentKey = showkaseBrowserComponent.componentKey
         val filePath = "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/phone/landscape/$componentKey.png"
         println("componentKey phone landscape: $componentKey")
-        RuntimeEnvironment.setQualifiers("w411dp-h891dp-land");
+        RuntimeEnvironment.setQualifiers("w411dp-h891dp-land")
 
         captureRoboImage(filePath)
     }
@@ -71,7 +72,22 @@ class ScreenshotTestForPreviews(
         val componentKey = showkaseBrowserComponent.componentKey
         val filePath = "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/phone/portrait/$componentKey.png"
         println("componentKey phone portrait: $componentKey")
-        RuntimeEnvironment.setQualifiers("w411dp-h891dp-port");
+        RuntimeEnvironment.setQualifiers("w411dp-h891dp-port")
+
+        captureRoboImage(filePath)
+    }
+
+    @Test
+    @Category(ScreenshotTestCategory::class)
+    fun previewScreenshot_phone_largeFont() {
+        val componentKey = showkaseBrowserComponent.componentKey
+        val filePath = "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/phone/largeFont/$componentKey.png"
+        println("componentKey phone portrait: $componentKey")
+
+        RuntimeEnvironment.setQualifiers("w411dp-h891dp-port")
+        val configuration: Configuration = RuntimeEnvironment.getApplication().resources.configuration
+        configuration.fontScale = 1.5f
+        RuntimeEnvironment.getApplication().resources.updateConfiguration(configuration, null)
 
         captureRoboImage(filePath)
     }
