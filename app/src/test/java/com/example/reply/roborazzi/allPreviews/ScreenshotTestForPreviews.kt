@@ -3,15 +3,9 @@ package com.example.reply.roborazzi.allPreviews
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.airbnb.android.showkase.models.Showkase
 import com.airbnb.android.showkase.models.ShowkaseBrowserComponent
-import com.airbnb.lottie.LottieTask
 import com.example.reply.module.getMetadata
 import com.github.takahirom.roborazzi.DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH
-import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
-import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
 import com.github.takahirom.roborazzi.captureRoboImage
-import com.github.takahirom.roborazzi.captureScreenRoboImage
-import org.junit.After
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.experimental.categories.Category
@@ -20,8 +14,6 @@ import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
 
 /**
  * showkase gets all public/internal @Preview composable and roborazzi takes screenshots of them.
@@ -31,24 +23,12 @@ import java.util.concurrent.Executors
 @Config(
     // FIXME: The following configuration should be removed after robolectric supports sdk 35.
     sdk = [34],
-    // default using a large-screen-size phone
-    qualifiers = RobolectricDeviceQualifiers.Pixel7,
 )
 class ScreenshotTestForPreviews(
     private val showkaseBrowserComponent: ShowkaseBrowserComponent,
 ) {
     @get:Rule
     val composeTestRule = createComposeRule()
-
-    @Before
-    fun setup() {
-        LottieTask.EXECUTOR = Executor(Runnable::run)
-    }
-
-    @After
-    fun finished() {
-        LottieTask.EXECUTOR = Executors.newCachedThreadPool()
-    }
 
     // image loader
 //    @OptIn(ExperimentalCoilApi::class)
@@ -65,56 +45,47 @@ class ScreenshotTestForPreviews(
 
     @Test
     @Category(ScreenshotTestCategory::class)
-    fun previewScreenshot() {
+    fun previewScreenshot_tablet() {
         val componentKey = showkaseBrowserComponent.componentKey
-        val filePath = "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/$componentKey.png"
-        println("componentKey: $componentKey")
-        if (componentKey.contains("Dialog") || componentKey.contains("DropdownMenu")) {
-            // Dialogs and DropdownMenu are not supported by captureRoboImage(), so we use captureScreenRoboImage() to capture the entire screen.
-            // To jump into this condition, the Dialog @Preview composable must be named with "Dialog",
-            // and the DropdownMenu @Preview composable must be named with "DropdownMenu".
-            composeTestRule.setContent {
+        val filePath = "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/tablet/$componentKey.png"
+        println("componentKey tablet: $componentKey")
+        RuntimeEnvironment.setQualifiers("w1280dp-h800dp-240dpi")
+
+        captureRoboImage(filePath)
+    }
+
+    @Test
+    @Category(ScreenshotTestCategory::class)
+    fun previewScreenshot_phone_landscape() {
+        val componentKey = showkaseBrowserComponent.componentKey
+        val filePath = "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/phone/landscape/$componentKey.png"
+        println("componentKey phone landscape: $componentKey")
+        RuntimeEnvironment.setQualifiers("w411dp-h891dp-land");
+
+        captureRoboImage(filePath)
+    }
+
+    @Test
+    @Category(ScreenshotTestCategory::class)
+    fun previewScreenshot_phone_portrait() {
+        val componentKey = showkaseBrowserComponent.componentKey
+        val filePath = "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/phone/portrait/$componentKey.png"
+        println("componentKey phone portrait: $componentKey")
+        RuntimeEnvironment.setQualifiers("w411dp-h891dp-port");
+
+        captureRoboImage(filePath)
+    }
+
+    private fun captureRoboImage(filePath: String) {
+        runCatching {
+            captureRoboImage(filePath) {
                 showkaseBrowserComponent.component()
             }
-            runCatching {
-                @OptIn(ExperimentalRoborazziApi::class)
-                (captureScreenRoboImage(filePath))
-            }.onFailure {
-                throw IllegalStateException(
-                    "Failed to captureScreenRoboImage[${showkaseBrowserComponent.componentName}]",
-                    it,
-                )
-            }
-        } else {
-            // Showkase not support device parameter of the preview composable.
-            // so have to set group parameter and use RuntimeEnvironment.setQualifiers() to set the device.
-            // issue created for Showkase: https://github.com/airbnb/Showkase/issues/388
-            when {
-                showkaseBrowserComponent.group.contains("TABLET") -> {
-                    RuntimeEnvironment.setQualifiers("w1280dp-h800dp-240dpi")
-                }
-
-                showkaseBrowserComponent.group.contains("DESKTOP") -> {
-                    RuntimeEnvironment.setQualifiers("w1920dp-h1080dp-160dpi")
-                }
-
-                showkaseBrowserComponent.group.contains("LONG_PHONE_DEVICE") -> {
-                    RuntimeEnvironment.setQualifiers("w411dp-h1200dp-420dpi")
-                }
-            }
-
-            runCatching {
-                captureRoboImage(
-                    filePath,
-                ) {
-                    showkaseBrowserComponent.component()
-                }
-            }.onFailure {
-                throw IllegalStateException(
-                    "Failed to captureRoboImage[${showkaseBrowserComponent.componentName}]",
-                    it,
-                )
-            }
+        }.onFailure {
+            throw IllegalStateException(
+                "Failed to captureRoboImage[${showkaseBrowserComponent.componentName}]",
+                it,
+            )
         }
     }
 

@@ -27,7 +27,7 @@ fun AnimateScreen(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview
+@Preview(widthDp = 400, heightDp = 820)
 @Composable
 fun AnimateScreenPreview() {
     AppTheme {
