@@ -1,12 +1,14 @@
 # Android Screenshot Testing Sample Repository
 
 This repository is designed to explore and evaluate various libraries and techniques for screenshot testing in Android. 
+
 The codebase is primarily based on the [android-compose-codelabs](https://github.com/android/codelab-android-compose)#Theming Codelab, 
 with additional modifications to integrate and test different screenshot testing libraries.
 
 ## Introduction
 
 Screenshot testing is a powerful tool for ensuring the visual correctness of UI components in Android applications. 
+
 This repository aims to provide a practical example of how different screenshot testing libraries can be integrated into an Android project built with Jetpack Compose.
 
 ## Screens
