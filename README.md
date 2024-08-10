@@ -1,11 +1,26 @@
-# Theming in Compose with Material 3 Codelab
+# Android Screenshot Testing Sample Repository
 
-This folder contains the source code for
-the [Theming in Compose with Material 3 Codelab](https://developer.android.com/codelabs/jetpack-compose-theming)
+This repository is designed to explore and evaluate various libraries and techniques for screenshot testing in Android. 
+The codebase is primarily based on the [android-compose-codelabs](https://github.com/android/codelab-android-compose)#Theming Codelab, 
+with additional modifications to integrate and test different screenshot testing libraries.
 
-## Screenshots
+## Introduction
 
-![Theming states](screenshots/theming.png "Theming states")
+Screenshot testing is a powerful tool for ensuring the visual correctness of UI components in Android applications. 
+This repository aims to provide a practical example of how different screenshot testing libraries can be integrated into an Android project built with Jetpack Compose.
+
+## Screens
+- **Inbox Screen**: A screen that displays a list of items.
+- **Detail Screen**: A screen that displays the details of an item.
+- **Animation Screen**: A screen that demonstrates several animations.
+- **Setting Screen**: A screen that allows the user to change the theme of the app.
+
+## Libraries and Tools
+
+This repository includes configurations and examples for the following screenshot testing libraries:
+
+- **[Roborazzi](https://github.com/takahirom/roborazzi)**: A lightweight library for generating and comparing screenshots.
+- **[Compose Preview Screenshot Testing](https://developer.android.com/studio/preview/compose-screenshot-testing)**: Utilizes the built-in Compose Preview to capture and compare screenshots.
 
 ## License
 
