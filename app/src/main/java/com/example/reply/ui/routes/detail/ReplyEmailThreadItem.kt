@@ -106,6 +106,7 @@ fun ReplyEmailThreadItem(
             ) {
                 Text(
                     text = stringResource(id = R.string.reply),
+                    style = MaterialTheme.typography.bodySmall
                 )
             }
             Button(
@@ -114,6 +115,7 @@ fun ReplyEmailThreadItem(
             ) {
                 Text(
                     text = stringResource(id = R.string.reply_all),
+                    style = MaterialTheme.typography.bodySmall
                 )
             }
         }
