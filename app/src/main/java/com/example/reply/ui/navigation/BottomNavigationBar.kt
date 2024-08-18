@@ -22,6 +22,7 @@ fun BottomNavigationBar(navController: NavController) {
         val currentRoute = currentRoute(navController)
         items.forEach { route ->
             NavigationBarItem(
+                modifier = Modifier.testTag(route.name),
                 icon = { Icon(route.icon, contentDescription = route.name) },
                 label = { Text(route.name) },
                 selected = currentRoute == route.name,
