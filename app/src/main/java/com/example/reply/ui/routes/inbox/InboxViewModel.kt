@@ -16,6 +16,7 @@
 
 package com.example.reply.ui.routes.inbox
 
+import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import com.example.reply.data.Email
 import com.example.reply.data.LocalEmailsDataProvider
@@ -43,6 +44,7 @@ class InboxViewModel @Inject constructor(
     }
 }
 
+@Stable
 data class InboxUIState(
     val emails: List<Email> = emptyList(),
     val loading: Boolean = false,

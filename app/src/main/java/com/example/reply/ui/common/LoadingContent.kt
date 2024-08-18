@@ -13,12 +13,15 @@ import androidx.compose.ui.unit.dp
 import com.example.reply.ui.theme.AppTheme
 
 @Composable
-fun LoadingContent(modifier: Modifier = Modifier) {
+fun LoadingContent(modifier: Modifier = Modifier, progress: Float? = null) {
     Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         CircularProgressIndicator(
             modifier = Modifier.size(64.dp),
             color = MaterialTheme.colorScheme.secondary,
-            trackColor = MaterialTheme.colorScheme.surfaceVariant
+            trackColor = MaterialTheme.colorScheme.surfaceVariant,
+            progress = {
+                progress ?: 0f
+            }
         )
     }
 }

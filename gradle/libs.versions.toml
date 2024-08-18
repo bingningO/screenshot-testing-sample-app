@@ -33,11 +33,15 @@ showkase = "1.0.3"
 rules = "1.6.1"
 junit = "4.13.2"
 espressoCore = "3.6.1"
-screenshot = "0.0.1-alpha03"
+screenshot = "0.0.1-alpha04"
+material3AdaptiveLayout = "1.0.0-beta04"
 
 [libraries]
 activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityKtx" }
 activityKtx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+material3-adaptive = { group = "androidx.compose.material3.adaptive", name= "adaptive", version.ref = "material3AdaptiveLayout" }
+material3-adaptive-layout = {group = "androidx.compose.material3.adaptive", name= "adaptive-layout", version.ref = "material3AdaptiveLayout"}
+material3-adaptive-navigation = { group = "androidx.compose.material3.adaptive", name= "adaptive-navigation", version.ref = "material3AdaptiveLayout" }
 animation = { module = "androidx.compose.animation:animation" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }

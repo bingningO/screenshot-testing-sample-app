@@ -1,5 +1,6 @@
 package com.example.reply.ui.routes.detail
 
+import androidx.compose.runtime.Stable
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.reply.data.Email
@@ -30,6 +31,7 @@ class DetailViewModel @Inject constructor(
         _uiState.value = DetailUiState(email = email, loading = false)
     }
 
+    @Stable
     data class DetailUiState(
         val email: Email? = null,
         val loading: Boolean = false,

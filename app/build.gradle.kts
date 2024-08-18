@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.builtins.StandardNames.FqNames.target
-
 /*
  * Copyright 2022 The Android Open Source Project
  *
@@ -20,6 +18,7 @@ plugins {
     id("com.android.application")
     alias(libs.plugins.kotlin)
     alias(libs.plugins.composeCompiler)
+    id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
     alias(libs.plugins.ksp)
@@ -86,11 +85,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    experimentalProperties["android.experimental.enableScreenshotTest"] = true
-
     buildFeatures {
         compose = true
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     packagingOptions {
         resources {
@@ -111,6 +113,10 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.material3)
     implementation(libs.materialIconsExtended)
+    implementation(libs.material3.adaptive)
+    implementation(libs.material3.adaptive.layout)
+    implementation(libs.material3.adaptive.navigation)
+
     implementation(libs.foundationLayout)
     implementation(libs.foundation)
     implementation(libs.animation)

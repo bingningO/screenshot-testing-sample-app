@@ -71,7 +71,7 @@ fun ReplyEmailListItem(
             Row(modifier = Modifier.fillMaxWidth()) {
                 ProfileImage(
                     drawableResource = email.sender.avatar,
-                    description = email.sender.fullName,
+                    description = email.sender.getFullName(),
                 )
                 Column(
                     modifier = Modifier

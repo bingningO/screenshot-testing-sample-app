@@ -17,9 +17,25 @@ class LoadingContentTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun loadingContentTest() {
+    fun loadingContentTest_start() {
         composeTestRule.setContent {
-            LoadingContent()
+            LoadingContent(progress = 0.0f)
+        }
+        composeTestRule.onRoot().captureRoboImage()
+    }
+
+    @Test
+    fun loadingContentTest_middle() {
+        composeTestRule.setContent {
+            LoadingContent(progress = 0.5f)
+        }
+        composeTestRule.onRoot().captureRoboImage()
+    }
+
+    @Test
+    fun loadingContentTest_almostEnd() {
+        composeTestRule.setContent {
+            LoadingContent(progress = 0.9f)
         }
         composeTestRule.onRoot().captureRoboImage()
     }

@@ -1,5 +1,6 @@
 package com.example.reply.ui.routes.animate
 
+import android.os.Build
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -34,6 +35,11 @@ fun AnimateLottie(
     val progress by animateLottieCompositionAsState(
         composition = composition,
         isPlaying = isPlaying,
+        iterations = if (Build.FINGERPRINT == "robolectric")
+            // make it only play once then compose gets idle to take a screenshot, see [AnimateLottieTestByStatic]
+            1
+        else
+            LottieConstants.IterateForever,
     )
 
     Column(modifier = modifier.fillMaxWidth()) {
@@ -55,7 +61,7 @@ fun AnimateLottie(
     }
 }
 
-@Preview(device = Devices.TABLET)
+@Preview
 @Composable
 fun AnimateLottiePreview() {
     AppTheme {

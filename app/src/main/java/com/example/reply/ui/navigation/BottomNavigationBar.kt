@@ -15,6 +15,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         Route.Inbox,
+        Route.Contacts,
         Route.Animation,
         Route.Settings
     )

@@ -52,7 +52,6 @@ class AnimateTabTestByGif{
     }
 
     @Test
-//    @Category(ScreenshotTestCategory::class)
     fun animateLottieTest() {
         composeTestRule.setContent {
             AppTheme {

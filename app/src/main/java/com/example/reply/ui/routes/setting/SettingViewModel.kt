@@ -1,5 +1,6 @@
 package com.example.reply.ui.routes.setting
 
+import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.reply.data.DarkLightMode
@@ -61,6 +62,7 @@ class SettingViewModel @Inject constructor(
         }
     }
 
+    @Stable
     data class SettingUIState(
         val darkLightMode: DarkLightMode? = null,
         val typographyMode: TypographyMode? = null,

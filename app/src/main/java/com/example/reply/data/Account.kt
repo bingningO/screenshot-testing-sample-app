@@ -16,12 +16,15 @@
 
 package com.example.reply.data
 
+import android.os.Parcelable
 import androidx.annotation.DrawableRes
+import kotlinx.parcelize.Parcelize
 
 /**
  * An object which represents an account which can belong to a user. A single user can have
  * multiple accounts.
  */
+@Parcelize
 data class Account(
     val id: Long,
     val uid: Long,
@@ -31,6 +34,6 @@ data class Account(
     val altEmail: String,
     @DrawableRes val avatar: Int,
     var isCurrentAccount: Boolean = false
-) {
-    val fullName: String = "$firstName $lastName"
+): Parcelable {
+    fun getFullName(): String = "$firstName $lastName"
 }
