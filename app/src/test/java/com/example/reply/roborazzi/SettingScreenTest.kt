@@ -2,17 +2,24 @@ package com.example.reply.roborazzi
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onRoot
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.reply.data.dummySettingUIState
 import com.example.reply.ui.routes.setting.SettingScreenSuccess
 import com.example.reply.ui.theme.AppTheme
+import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
+import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
+@Config(
+    qualifiers = RobolectricDeviceQualifiers.Pixel7,
+)
 class SettingScreenTest {
 
     @get:Rule
@@ -29,6 +36,6 @@ class SettingScreenTest {
                     changeTypographyMode = {})
             }
         }
-//        composeTestRule.onRoot().captureRoboImage()
+        composeTestRule.onRoot().captureRoboImage()
     }
 }

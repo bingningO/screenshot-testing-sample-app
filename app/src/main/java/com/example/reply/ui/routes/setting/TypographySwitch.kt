@@ -57,7 +57,7 @@ private fun TypographyItem(
         Text(
             text = typographyMode.name,
             style =  MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(start = 8.dp)
+            modifier = Modifier.padding(start = 6.dp)
             )
     }
 }
