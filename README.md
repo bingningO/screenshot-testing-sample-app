@@ -11,11 +11,11 @@ Screenshot testing is a powerful tool for ensuring the visual correctness of UI 
 
 This repository aims to provide a practical example of how different screenshot testing libraries can be integrated into an Android project built with Jetpack Compose.
 
-## Screens
-- **Inbox Screen**: A screen that displays a list of items.
-- **Detail Screen**: A screen that displays the details of an item.
+## Bottom Navigation Tabs
+- **Inbox Screen**: A screen that displays a list of mails. Navigation to the detail screen is also available.
+- **Contact List Screen**: A screen that displays a list of contacts. Navigation to the detail screen is also available. Using new Material 3 component [ListDetailPaneScaffold].
 - **Animation Screen**: A screen that demonstrates several animations.
-- **Setting Screen**: A screen that allows the user to change the theme of the app.
+- **Setting Screen**: A screen that allows the user to change the theme and fonts of the app.
 
 ## Libraries and Tools
 

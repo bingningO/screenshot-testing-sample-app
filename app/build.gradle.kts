@@ -109,7 +109,6 @@ dependencies {
     testImplementation(composeBom)
     androidTestImplementation(composeBom)
 
-    implementation(libs.runtime)
     implementation(libs.ui)
     implementation(libs.material3)
     implementation(libs.materialIconsExtended)
@@ -121,7 +120,6 @@ dependencies {
     implementation(libs.foundation)
     implementation(libs.animation)
     implementation(libs.uiToolingPreview)
-    implementation(libs.runtimeLivedata)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
 
@@ -132,7 +130,7 @@ dependencies {
 
     implementation(libs.appcompat)
     implementation(libs.activityKtx)
-    implementation(libs.coreKtx)
+//    implementation(libs.coreKtx)
     implementation(libs.activityCompose)
 
     implementation(libs.lifecycleViewmodelKtx)
@@ -142,11 +140,8 @@ dependencies {
 
     implementation(libs.lottie.compose)
 
-    testImplementation(libs.kermit.android.debug)
-
     // Dagger Hilt
     implementation(libs.daggerHilt)
-    implementation(libs.daggerHiltWork)
     kapt(libs.daggerHiltCompiler)
     kapt(libs.hiltCompiler)
     implementation(libs.navigationCompose)

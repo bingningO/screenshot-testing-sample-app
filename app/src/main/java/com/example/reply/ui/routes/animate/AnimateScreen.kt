@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.reply.ui.theme.AppTheme
@@ -28,6 +29,7 @@ fun AnimateScreen(modifier: Modifier = Modifier) {
 }
 
 @Preview(widthDp = 400, heightDp = 820)
+@Preview(device = Devices.PIXEL_7)
 @Composable
 fun AnimateScreenPreview() {
     AppTheme {

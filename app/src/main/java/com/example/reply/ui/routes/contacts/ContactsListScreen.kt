@@ -1,5 +1,6 @@
 package com.example.reply.ui.routes.contacts
 
+import android.content.res.Configuration
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.UiMode
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.reply.data.Account
@@ -38,7 +40,7 @@ fun ContactsListScreen(
         directive = navigator.scaffoldDirective,
         value = navigator.scaffoldValue,
         listPane = {
-            AnimatedPane(modifier = Modifier.preferredWidth(200.dp)) {
+            AnimatedPane(modifier = Modifier.preferredWidth(320.dp)) {
                 Surface(
                     color = MaterialTheme.colorScheme.surface,
                 ) {
@@ -52,7 +54,7 @@ fun ContactsListScreen(
             }
         },
         detailPane = {
-            AnimatedPane(modifier = Modifier) {
+            AnimatedPane {
                 Surface(
                     color = MaterialTheme.colorScheme.surfaceVariant,
                 ) {
@@ -65,8 +67,8 @@ fun ContactsListScreen(
     )
 }
 
-@Preview(apiLevel = 33)
-@Preview(apiLevel = 33, device = Devices.TABLET)
+@Preview
+@Preview(device = Devices.TABLET)
 @Composable
 fun ContactsListScreenPreview() {
     ContactsListScreen(

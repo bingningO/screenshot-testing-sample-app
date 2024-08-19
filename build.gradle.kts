@@ -20,6 +20,7 @@ plugins {
     alias(libs.plugins.gradleVersions)
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.roborazzi) apply false
+    alias(libs.plugins.dependencyGraph) apply false
 }
 
 buildscript {
