@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,29 +28,47 @@ fun ContactDetail(
     modifier: Modifier = Modifier,
     account: Account
 ) {
-    Column(
+    LazyColumn (
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ProfileImage(
-            modifier = Modifier.size(100.dp),
-            drawableResource = account.avatar,
-            description = account.getFullName(),
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = account.getFullName(),
-            style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        AccountInfoRow("ID:", account.id.toString())
-        AccountInfoRow("UID:", account.uid.toString())
-        AccountInfoRow("Email:", account.email)
-        AccountInfoRow("Alt Email:", account.altEmail)
-        AccountInfoRow("Current Account:", account.isCurrentAccount.toString())
+        item {
+            ProfileImage(
+                modifier = Modifier.size(100.dp),
+                drawableResource = account.avatar,
+                description = account.getFullName(),
+            )
+        }
+        item {
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+        item {
+            Text(
+                text = account.getFullName(),
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold
+            )
+        }
+        item {
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+        item {
+            AccountInfoRow("ID:", account.id.toString())
+        }
+        item {
+            AccountInfoRow("UID:", account.uid.toString())
+        }
+        item {
+            AccountInfoRow("Email:", account.email)
+        }
+        item {
+            AccountInfoRow("Alt Email:", account.altEmail)
+        }
+        item {
+            AccountInfoRow("Current Account:", account.isCurrentAccount.toString())
+        }
     }
 }
 

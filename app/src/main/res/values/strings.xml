@@ -9,7 +9,7 @@
   the License.
   -->
 <resources>
-    <string name="app_name">Reply</string>
+    <string name="app_name">ScreenShotTestSample</string>
     <string name="navigation_drawer">Navigation Drawer</string>
     <string name="tab_inbox">Inbox</string>
     <string name="tab_article">Articles</string>
