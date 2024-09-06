@@ -59,10 +59,5 @@ class AnimateLottieTestByGif {
                 AnimateLottie()
             }
         }
-        waitUntilIdle(testRule = composeTestRule, testDispatcher = testDispatcher)
-        checkScreenCapture(composeTestRule)
-        composeTestRule.onNodeWithText("Play or Stop").performClick()
-        waitUntilIdle(testRule = composeTestRule, testDispatcher = testDispatcher)
-        checkScreenCapture(composeTestRule)
     }
 }

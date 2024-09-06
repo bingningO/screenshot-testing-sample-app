@@ -30,7 +30,7 @@ import com.example.reply.ui.theme.AppTheme
 fun AnimateLottie(
     modifier: Modifier = Modifier,
 ) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lottie_sample))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lottie_complex))
     var isPlaying by remember { mutableStateOf(true) }
     val progress by animateLottieCompositionAsState(
         composition = composition,
