@@ -17,7 +17,7 @@ This repository aims to provide a practical example of how different screenshot 
 - **Animation Screen**: A screen that demonstrates several animations.
 - **Setting Screen**: A screen that allows the user to change the theme and fonts of the app.
 
-![Video Gif](...)
+![Video Gif](https://github.com/bingningO/screenshot-testing-sample-app/blob/main/images/app.gif)
 
 ## Libraries and Tools
 
